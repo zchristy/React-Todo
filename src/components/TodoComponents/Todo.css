@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700');
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+	background: #ecf0f1;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: auto;
+  min-width: 300px;
+  max-width: 800px;
+  margin-top: 20px;
+  background-color: #fff;
+  -webkit-box-shadow: 6px 6px 11px -2px rgba(0,0,0,0.28);
+  -moz-box-shadow: 6px 6px 11px -2px rgba(0,0,0,0.28);
+  box-shadow: 6px 6px 11px -2px rgba(0,0,0,0.28);
+}
+
+header {
+  text-align: center;
+}
+
+h1 {
+  margin-top: 50px;
+  font-weight:300;
+  color: #2c3e50;
+}
+
+h2 {
+  color: #bdc3c7;
+	font-weight:300;
+}
+
+.list {
+	width: 100%;
+	margin: 20px auto;
+}
+
+.todo-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.task {
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	font-size: 20px;
+	padding: 0 20px;
+	color: #34495e;
+	transition: all .3s ease;
+}
+.task:hover {
+	background: rgba(0, 0, 0, .02);
+	cursor: pointer;
+}
+
+.task:hover span{
+	opacity: 1;
+}
+
+.done {
+	text-decoration: line-through;
+	color: #bdc3c7;
+}
+
+li span {
+  float: right;
+  color: #c0392b;
+  transition: all 0.3s;
+  opacity: 0;
+}
+
+li span:hover {
+  color: #e74c3c
+}
+
+/* ----- Form -----  */
+
+.todo-form-container {
+  width: 100%;
+  padding: 0 20px 50px 20px;
+}
+
+#todoInput {
+	width: 100%;
+	height: 60px;
+	background: none;
+	border: none;
+	border-bottom: 1px solid #34495e;
+	outline: none;
+	font: 300 28px 'Ubuntu', sans-serif;
+	color: #34495e;
+}
