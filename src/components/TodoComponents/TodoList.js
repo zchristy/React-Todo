@@ -7,10 +7,10 @@ import './Todo.css'
 class TodoList extends Component {
 
   render() {
-    const todos = this.props.todos.map((todo, i) => {
-      return <li name='task' done={todo.task} className='task' key={i} onClick={this.props.onClick} >
-                {todo.task}{console.log(todo.isCompleted)}
-                <span name='delete' delete={todo.task} onClick={this.props.onClick} >X</span>
+    const todos = this.props.todos.map((todo) => {
+      return <li name='task' done={todo.task} className='task' key={todo.task} onClick={this.props.onClick} >
+                {todo.task}
+                <span name='delete' delete={todo.task} >X</span>
             </li>;
     });
     return (

@@ -49,15 +49,15 @@ class App extends Component {
     // Grab clicked element
     const clickedTask = event.target.getAttribute("delete");
     // find object index of clicked element and return index
-    const index = todosArray.findIndex(todo => {
+    const deletedElement = todosArray.filter(todo => {
       return todo.task === clickedTask;
     });
-    if(index !== -1) {
-      // remove object from new array
-      todosArray.splice(index, 1);
-      // set state to new array
-      this.setState({ todos: todosArray});
-    }
+
+    const index = todosArray.indexOf(deletedElement[0]);
+    // remove object from new array
+    todosArray.splice(index, 1);
+    // set state to new array
+    this.setState({ todos: todosArray});
   }
 
   handleDone = (event) => {
@@ -67,16 +67,16 @@ class App extends Component {
     // Grab clicked element
     const clickedTask = event.target.getAttribute("done");
     // find object index of clicked element and return index
-    const index = todosArray.findIndex(todo => {
+    const doneElement = todosArray.filter(todo => {
       return todo.task === clickedTask;
     });
 
     // change value of isCompleted in new array
-    if(todosArray[index].isCompleted === 'false') {
-       todosArray[index].isCompleted = 'true';
+    if(doneElement[0].isCompleted === 'false') {
+       doneElement[0].isCompleted = 'true';
        event.target.classList.add('done');
     } else {
-      todosArray[index].isCompleted = 'false';
+      doneElement[0].isCompleted = 'false';
       event.target.classList.remove('done');
     }
 
@@ -94,7 +94,11 @@ class App extends Component {
                             })
     });
     // reset classList Node on clear all
-    document.querySelector('li').classList.remove('done');
+    if(todosArray.length !== 0) {
+      const li = document.querySelectorAll('li');
+      li.forEach(val => val.classList.remove('done'));
+    }
+
   }
 
   // Combining all click events into one method
