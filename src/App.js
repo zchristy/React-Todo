@@ -13,17 +13,17 @@ class App extends Component {
               {
                 id: Date.now() + 1,
                 task: 'Learn React',
-                isCompleted: false
+                isCompleted: 'false'
               },
               {
                 id: Date.now() + 2,
                 task: 'Build Todo App',
-                isCompleted: false
+                isCompleted: 'false'
               },
               {
                 id: Date.now() + 3,
                 task: 'Be Awesome',
-                isCompleted: false
+                isCompleted: 'false'
               }
       ]
     };
@@ -61,20 +61,40 @@ class App extends Component {
   }
 
   handleDone = (event) => {
-    // toggle done class when task is clicked
-    event.target.classList.toggle('done');
     // slice state todos array to create new array
     const todosArray = [...this.state.todos];
+
     // Grab clicked element
-    const clickedTask = event.target.getAttribute("complete");
+    const clickedTask = event.target.getAttribute("done");
     // find object index of clicked element and return index
     const index = todosArray.findIndex(todo => {
       return todo.task === clickedTask;
     });
+
     // change value of isCompleted in new array
-    todosArray[index].isCompleted = true;
+    if(todosArray[index].isCompleted === 'false') {
+       todosArray[index].isCompleted = 'true';
+       event.target.classList.add('done');
+    } else {
+      todosArray[index].isCompleted = 'false';
+      event.target.classList.remove('done');
+    }
+
     // set state to new array
     this.setState({ todos: todosArray});
+
+  }
+
+  handleCLearCompleted = (event) => {
+    // slice state todos array to create new array
+    const todosArray = [...this.state.todos];
+    // set state to new array
+    this.setState({ todos: todosArray.filter(todo => {
+                              return todo.isCompleted === 'false'
+                            })
+    });
+    // reset classList Node on clear all
+    document.querySelector('li').classList.remove('done');
   }
 
   // Combining all click events into one method
@@ -83,6 +103,8 @@ class App extends Component {
       this.handleDone(event);
     } else if (event.target.getAttribute('name') === 'delete'){
       this.handleDelete(event);
+    } else if(event.target.getAttribute('id') === 'clear') {
+      this.handleCLearCompleted(event);
     }
   }
 

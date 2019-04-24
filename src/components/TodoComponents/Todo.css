@@ -68,6 +68,19 @@ h2 {
   box-shadow: 6px 6px 11px -2px rgba(0,0,0,0.28);
 }
 
+.container h2 {
+  font-size: 1rem;
+  align-self: flex-end;
+  margin: 10px 10px 0 0;
+  transition: all .3s ease;
+  cursor: pointer;
+}
+
+.container h2:hover {
+  color: #c0392b;
+  transform: scale(1.1);
+}
+
 /* =============== Todos ===================== */
 .list {
 	width: 100%;
