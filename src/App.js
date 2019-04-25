@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SimpleStorage from "react-simple-storage";
 
 import TodoList from './components/TodoComponents/TodoList'
 import './components/TodoComponents/Todo.css'
@@ -31,6 +32,7 @@ class App extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+
     // Create new Object in state array with the user input value
     this.setState({
       todos: [...this.state.todos, {
@@ -39,6 +41,7 @@ class App extends Component {
         isCompleted: 'false'
       }]
     });
+
     // reset input box
     event.target.reset();
   }
@@ -46,6 +49,7 @@ class App extends Component {
   handleDelete = (event) => {
     // slice state todos array to create new array
     const todosArray = [...this.state.todos];
+
     // Grab clicked element
     const clickedTask = event.target.getAttribute("delete");
     // find object index of clicked element and return index
@@ -56,6 +60,7 @@ class App extends Component {
     const index = todosArray.indexOf(deletedElement[0]);
     // remove object from new array
     todosArray.splice(index, 1);
+
     // set state to new array
     this.setState({ todos: todosArray});
   }
@@ -70,7 +75,7 @@ class App extends Component {
     const doneElement = todosArray.filter(todo => {
       return todo.task === clickedTask;
     });
-
+    console.log(doneElement);
     // change value of isCompleted in new array
     if(doneElement[0].isCompleted === 'false') {
        doneElement[0].isCompleted = 'true';
@@ -88,17 +93,18 @@ class App extends Component {
   handleCLearCompleted = (event) => {
     // slice state todos array to create new array
     const todosArray = [...this.state.todos];
+
     // set state to new array
     this.setState({ todos: todosArray.filter(todo => {
                               return todo.isCompleted === 'false'
                             })
     });
+
     // reset classList Node on clear all
     if(todosArray.length !== 0) {
       const li = document.querySelectorAll('li');
       li.forEach(val => val.classList.remove('done'));
     }
-
   }
 
   // Combining all click events into one method
@@ -115,6 +121,7 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
+        <SimpleStorage parent={this} />
         <header>
           <h1>Todo List</h1>
           <h2>Keep Track of what Needs to Be Done!</h2>
